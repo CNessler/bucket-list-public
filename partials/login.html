@@ -1,1 +1,18 @@
 <h1>LOGIN</h1>
+<div class="container">
+  <p>
+    {{userInfo.userInfo}}
+  </p>
+  <form class="form-horizontal" ng-submit="login()" novalidate name="form">
+    <div class="form-group">
+      <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" ng-model="user.email" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+        <input type="password" id="password" class="form-control" ng-model="user.password" required>
+    </div>
+    <input type="submit" value="Sign Up">
+    </div>
+  </form>
+</div>

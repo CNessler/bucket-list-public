@@ -1,12 +1,48 @@
-app.controller("bucketList", ['$scope', '$location', 'BucketListService', function ($scope, $location, BucketListService) {
-  $scope.message = "HEYO";
-
+app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', function ($scope, $location, ItemsToPage) {
+  // $scope.itemsToPage = ItemsToPage;
+  $scope.userInfo = ItemsToPage;
   $scope.signup = function () {
-    console.log('in func');
     $scope.newUser.lists = [];
-    BucketListService.signup($scope.newUser).then(function (newUser) {
-      $location = '/welcome';
-      
+    ItemsToPage.signup($scope.newUser).then(function (data) {
+      if(data.errors){
+        ItemsToPage.userInfo = data.errors
+        $scope.newUser = {};
+        $location.path('/signup');
+      } else {
+        ItemsToPage.userInfo = data.user;
+        $location.path('/welcome');
+      }
+    })
+  }
+
+  $scope.login = function () {
+    ItemsToPage.login($scope.user).then(function (data) {
+      console.log(data, "DATA");
+      if(data.errors){
+        ItemsToPage.userInfo = data.errors
+        $scope.user = {};
+        $location.path('/login');
+      } else {
+        ItemsToPage.userInfo = data.user;
+        $location.path('/welcome');
+      }
     })
   }
 }])
+
+
+
+
+
+
+//
+// $scope.userInfo = ItemsToPage;
+// $scope.signup = function () {
+//   $scope.newUser.lists = [];
+//   ItemsToPage.signup($scope.newUser).then(function (user) {
+//     ItemsToPage = user;
+//     console.log(user, "USER");
+//     console.log(user._id, "USER");
+//     $location.path('/welcome/' + user._id);
+//   })
+// }
