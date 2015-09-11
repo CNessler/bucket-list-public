@@ -1,4 +1,35 @@
-<h1>Check Out Your Bucket {{userInfo.userInfo.first}}</h1>
-<p>
-  {{userInfo.userInfo}}
-</p>
+<div class="container">
+  <h1>Check Out Your Bucket {{$storage.ItemsToPage.userFirst}}</h1>
+  {{$storage.ItemsToPage}}
+  <div>
+    <button ng-click='toggleNewBucket()'>
+      create your bucket
+    </button>
+  </div>
+  <div ng-hide='newBucket'>
+    <form class="form-inline" ng-submit="addDream()">
+      <div class="form-group">
+        <label for="location">Location</label>
+          <input type="text" id="location" class="form-control" ng-model="item.location" required>
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+          <input class="form-control" id="title" type="text" ng-model="item.title" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+          <input class="form-control" id="description" type="textarea" ng-model="item.description" required>
+      </div>
+      <div class="form-group">
+        <label for="image">Image URL</label>
+          <input class="form-control" id="image" type="url" ng-model="item.image" placeholder="Optional">
+      </div>
+      <input type="submit" name="Add to Bucket">
+    </form>
+  </div>
+  <div ng-repeat='item in $storage.ItemsToPage.lists'>
+    <p>
+      {{item.title}}
+    </p>
+  </div>
+</div>

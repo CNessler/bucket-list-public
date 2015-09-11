@@ -1,4 +1,4 @@
-var app = angular.module("Bucket", ["ngRoute"]);
+var app = angular.module("Bucket", ["ngRoute", "ngCookies", "ngStorage"]);
 
 app.config(function ($routeProvider) {
   $routeProvider
