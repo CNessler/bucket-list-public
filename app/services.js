@@ -15,4 +15,8 @@ app.service("ItemsToPage", ['$http', function ($http) {
     return $http.post('http://localhost:3000/api/insert', post)
   }
 
+  this.updateProfile = function (profile) {
+    console.log(profile, "being sent to server");
+    $http.post('http://localhost:3000/api/profile', profile)
+  }
 }])

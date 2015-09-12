@@ -14,8 +14,12 @@ app.config(function ($routeProvider) {
       templateUrl: 'partials/signup.html',
       controller: 'bucketList'
     })
-    .when('/welcome', {
+    .when('/welcome/:id', {
       templateUrl: 'partials/welcome.html',
+      controller: 'bucketList'
+    })
+    .when('/profile/:id', {
+      templateUrl: 'partials/profile.html',
       controller: 'bucketList'
     })
 })

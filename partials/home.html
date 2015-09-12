@@ -1,3 +1,15 @@
-<h1>HOME</h1>
-<a href="#signup">Sign Up</a>
-<a href="#login">Login</a>
+<div class="container">
+  <div class="navbar">
+    <div class="left">
+      <img class='logo' src="http://pngimg.com/upload/bucket_PNG7774.png" alt="Bucket List" />
+    </div>
+    <h1 class='title'>Because a Dream is a Dream</h1>
+    <div class="right" ng-hide='{{$storage.ItemsToPage.loggedIn}}'>
+      <a class='link' href="#signup">Sign Up</a>
+      <a href="#login">Login</a>
+    </div>
+    <div class="right" ng-show='{{$storage.ItemsToPage.loggedIn}}'>
+      <a class='link' href="#profile/ + {{$storage.ItemsToPage.user._id}}">Profile</a>
+    </div>
+  </div>
+</div>

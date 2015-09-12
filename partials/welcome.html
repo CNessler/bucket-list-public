@@ -1,9 +1,18 @@
+<div class="container-fluid">
+  <div class="right">
+    <a href="#profile/ + {{$storage.ItemsToPage.user._id}}">Profile</a>
+  </div>
+</div>
+
 <div class="container">
-  <h1>Check Out Your Bucket {{$storage.ItemsToPage.userFirst}}</h1>
-  {{$storage.ItemsToPage}}
+  <h1>Check Out Your Bucket {{$storage.ItemsToPage.user.userFirst}}</h1>
+  <div>
+    <span><h3><strong>First Name: </strong>{{$storage.ItemsToPage.user.userFirst}} <strong>Last Name: </strong>{{$storage.ItemsToPage.user.userLast}}</h3></span>
+    <span><strong>Email: </strong>{{$storage.ItemsToPage.user.email}} strong</span>
+  </div>
   <div>
     <button ng-click='toggleNewBucket()'>
-      create your bucket
+      Add to Bucket
     </button>
   </div>
   <div ng-hide='newBucket'>
@@ -24,12 +33,27 @@
         <label for="image">Image URL</label>
           <input class="form-control" id="image" type="url" ng-model="item.image" placeholder="Optional">
       </div>
-      <input type="submit" name="Add to Bucket">
+      <input type="submit" name="Add to Bucket" ng-click='toggleNewBucket()'>
     </form>
   </div>
-  <div ng-repeat='item in $storage.ItemsToPage.lists'>
-    <p>
-      {{item.title}}
-    </p>
+  <div ng-repeat='item in $storage.ItemsToPage.user.lists'>
+    <div>
+      <img src="{{item.image}}"/>
+    </div>
+    <div>
+      <p>
+        <strong>Title: </strong> {{item.title}}
+      </p>
+    </div>
+    <div>
+      <p>
+        <strong>Location: </strong>{{item.location}}
+      </p>
+    </div>
+    <div>
+      <p>
+        <strong>Description: </strong> {{item.description}}
+      </p>
+    </div>
   </div>
 </div>
