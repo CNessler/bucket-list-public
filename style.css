@@ -24,3 +24,18 @@ img {
 .left {
   float: left;
 }
+
+.search {
+  width: 200px;
+  height: auto;
+  padding: 5px;
+  border: 1px solid grey;
+}
+.searcher {
+  width:200px;
+}
+
+.search:hover {
+  background-color: grey;
+  cursor: pointer;
+}

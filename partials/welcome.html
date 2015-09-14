@@ -2,10 +2,20 @@
   <div class="right">
     <a href="#profile/ + {{$storage.ItemsToPage.user._id}}">Profile</a>
   </div>
+  <div>
+    <input class="searcher" type="text" ng-model='search.letters' placeholder="Find Friends" ng-keyup='findFriends()'>
+  </div>
+  <div class='search' ng-repeat='friend in $storage.ItemsToPage.foundFriends.foundFriends'>
+    <a ng-click='findOne(friend)' href="#friend/ + {{friend._id}}">  {{friend.email}}</a>
+  </div>
 </div>
-
 <div class="container">
   <h1>Check Out Your Bucket {{$storage.ItemsToPage.user.userFirst}}</h1>
+  <div ng-repeat='pending in  $storage.ItemsToPage.user.pendingFriends'>
+    <div ng-click=addToFriends(pending)>
+      {{pending}}
+    </div>
+  </div>
   <div>
     <span><h3><strong>First Name: </strong>{{$storage.ItemsToPage.user.userFirst}} <strong>Last Name: </strong>{{$storage.ItemsToPage.user.userLast}}</h3></span>
     <span><strong>Email: </strong>{{$storage.ItemsToPage.user.email}} strong</span>
@@ -16,7 +26,7 @@
     </button>
   </div>
   <div ng-hide='newBucket'>
-    <form class="form-inline" ng-submit="addDream()">
+    <form class="form-inline" ng-submit="addDream(item)">
       <div class="form-group">
         <label for="location">Location</label>
           <input type="text" id="location" class="form-control" ng-model="item.location" required>

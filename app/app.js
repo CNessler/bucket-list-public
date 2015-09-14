@@ -22,4 +22,8 @@ app.config(function ($routeProvider) {
       templateUrl: 'partials/profile.html',
       controller: 'bucketList'
     })
+    .when('/friend/:id', {
+      templateUrl: 'partials/friend.html',
+      controller: 'bucketList'
+    })
 })

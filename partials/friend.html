@@ -1,0 +1,16 @@
+<div class="right">
+  <a href="#profile/ + {{$storage.ItemsToPage.user._id}}">Profile</a>
+</div>
+
+<h1>{{$storage.ItemsToPage.oneFriend.foundFriend.userFirst}} {{$storage.ItemsToPage.oneFriend.foundFriend.userLast}}</h1>
+<button ng-click='addFriend($storage.ItemsToPage.user._id)'><i class="fa fa-check-circle-o fa-2x"></i><span>Friend</span></button>
+<div class="friend list" ng-show='$storage.ItemsToPage.oneFriend.foundFriend.private === false'>
+  <div class="list" ng-repeat='item in $storage.ItemsToPage.oneFriend.foundFriend.lists'>
+
+
+    <p>
+      {{item.title}}
+    </p>
+    {{item.location}}
+  </div>
+</div>
