@@ -36,16 +36,26 @@ app.service("ItemsToPage", ['$http', function ($http) {
   }
 
   this.addFriend = function (currentUser) {
-    $http.post('http://localhost:3000/api/addFriend', currentUser)
+    $http.post('http://localhost:3000/api/addFriend', currentUser).then(function (response) {
+      console.log(response, 'please be updated user');
+    })
   }
 
   this.addLike =  function (item) {
-    console.log(item, 'going to db');
     $http.post('http://localhost:3000/api/addLike', item);
   }
 
   this.addToFriends = function (friend) {
-    $http.post('http://localhost:3000/api/addToFriends', friend).then(function (updatedUser) {
+    return $http.post('http://localhost:3000/api/addToFriends', friend).then(function (updatedUser) {
+      console.log(updatedUser.data, 'user update');
+      return updatedUser.data
+    })
+  }
+
+  this.removePending = function (friend) {
+    $http.post('http://localhost:3000/api/removePending', friend).then(function (updatedUser) {
+      console.log(updatedUser.data, 'user updated');
+      return updatedUser.data
     })
   }
 }])

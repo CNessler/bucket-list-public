@@ -51,27 +51,33 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
     $scope.$storage.ItemsToPage.bucket.push($scope.item)
     $scope.item = {};
   }
+
   $scope.logout = function () {
     $cookies.remove("name");
     $scope.$storage.$reset();
     $location.path('/home');
   }
+
   $scope.updateProfile = function () {
     ItemsToPage.updateProfile($scope.$storage.ItemsToPage.foundUser);
     $location.path('/welcome/' + $scope.$storage.ItemsToPage.user._id)
   }
+
   $scope.findFriends = function () {
     ItemsToPage.findFriends($scope.search).then(function (foundFriends) {
       $scope.$storage.ItemsToPage.foundFriends = foundFriends;
     })
   }
+
   $scope.findOne = function (friend) {
-    console.log(friend, 'friend');
+    console.log($scope.$storage.ItemsToPage, 'before the func');
     ItemsToPage.findOne(friend).then(function (friend) {
       $scope.$storage.ItemsToPage.oneFriend = friend.friend;
-      $scope.$storage.ItemsToPage.bucket = friend.foundItems;
+      $scope.$storage.ItemsToPage.friendBucket = friend.foundItems;
+      console.log($scope.$storage.ItemsToPage, 'i beleive added object');
     })
   }
+
   $scope.switch = true;
   $scope.addFriend = function () {
     $scope.switch = false;
@@ -88,10 +94,25 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
   }
 
   $scope.addToFriends = function (friend) {
-    friend.user = $scope.$storage.ItemsToPage._id
-    friend._id = friend._id
+    friend = {
+      user: $scope.$storage.ItemsToPage._id,
+      _id: friend
+    }
     ItemsToPage.addToFriends(friend).then(function (updatedUser) {
-      console.log(updatedUser, 'new pending friends');
+      console.log(updatedUser, 'object to change scope object');
+      $scope.$storage.ItemsToPage = updatedUser.user;
+      $scope.$storage.ItemsToPage.loggedIn = true;
+    })
+  }
+
+  $scope.removePending = function (friend) {
+    friend = {
+      user: $scope.$storage.ItemsToPage._id,
+      _id: friend
+    }
+    ItemsToPage.removePending(friend).then(function (updatedUser) {
+      $scope.$storage.ItemsToPage = updatedUser.user;
+      $scope.$storage.ItemsToPage.loggedIn = true;
     })
   }
 
