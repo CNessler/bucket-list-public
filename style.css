@@ -39,3 +39,6 @@ img {
   background-color: grey;
   cursor: pointer;
 }
+i:hover {
+  cursor: pointer;
+}

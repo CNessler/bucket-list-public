@@ -1,16 +1,25 @@
-<div class="right">
-  <a href="#profile/ + {{$storage.ItemsToPage.user._id}}">Profile</a>
-</div>
-
-<h1>{{$storage.ItemsToPage.oneFriend.foundFriend.userFirst}} {{$storage.ItemsToPage.oneFriend.foundFriend.userLast}}</h1>
-<button ng-click='addFriend($storage.ItemsToPage.user._id)'><i class="fa fa-check-circle-o fa-2x"></i><span>Friend</span></button>
-<div class="friend list" ng-show='$storage.ItemsToPage.oneFriend.foundFriend.private === false'>
-  <div class="list" ng-repeat='item in $storage.ItemsToPage.oneFriend.foundFriend.lists'>
-
-
-    <p>
-      {{item.title}}
-    </p>
-    {{item.location}}
+<div class="container">
+  <div class="navbar">
+    <div class='left'>
+      <img class='logo' src="http://pngimg.com/upload/bucket_PNG7774.png" alt="Bucket List" />
+    </div>
+    <div class="right" ng-show='{{$storage.ItemsToPage.loggedIn}}'>
+      <a class='link' href="#welcome/ + {{$storage.ItemsToPage._id}}">Bucket</a>
+      <a class='link' href="#/" ng-click='logout()'>Logout</a>
+    </div>
+    <div class="right">
+      <a href="#profile/ + {{$storage.ItemsToPage.user._id}}">Profile</a>
+    </div>
+  </div>
+  <h1>{{$storage.ItemsToPage.oneFriend.userFirst}} {{$storage.ItemsToPage.oneFriend.userLast}}</h1>
+  <button ng-show='switch' ng-click='addFriend($storage.ItemsToPage.oneFriend)'><i class="fa fa-check-circle-o fa-2x"></i><span>Friend</span></button>
+  <div class="friend list" ng-show='$storage.ItemsToPage.oneFriend.private === false'>
+    <div class="list" ng-repeat='item in $storage.ItemsToPage.bucket'>
+      <i class="fa fa-thumbs-o-up fa-2x" ng-click='addLike(item)'></i>{{item.likes}}
+      <p>
+        {{item.title}}
+      </p>
+      {{item.location}}
+    </div>
   </div>
 </div>

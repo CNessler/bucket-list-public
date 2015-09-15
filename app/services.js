@@ -12,7 +12,6 @@ app.service("ItemsToPage", ['$http', function ($http) {
   }
 
   this.insert = function (post) {
-    console.log(post, 'to be inserted to db');
     return $http.post('http://localhost:3000/api/insert', post)
   }
 
@@ -25,17 +24,28 @@ app.service("ItemsToPage", ['$http', function ($http) {
       return results.data
     })
   }
+
   this.findOne = function (friend) {
     return $http.get('http://localhost:3000/api/friend', {
         params: {
                   friend: friend._id
                 }
      }).then(function (friend) {
-       return friend.data
+       return friend.data.foundFriend
     })
   }
+
   this.addFriend = function (currentUser) {
-    console.log(currentUser, 'being sent to server');
     $http.post('http://localhost:3000/api/addFriend', currentUser)
+  }
+
+  this.addLike =  function (item) {
+    console.log(item, 'going to db');
+    $http.post('http://localhost:3000/api/addLike', item);
+  }
+
+  this.addToFriends = function (friend) {
+    $http.post('http://localhost:3000/api/addToFriends', friend).then(function (updatedUser) {
+    })
   }
 }])

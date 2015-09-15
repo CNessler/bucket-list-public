@@ -1,6 +1,15 @@
 <div class="container-fluid">
-  <div class="right">
-    <a href="#profile/ + {{$storage.ItemsToPage.user._id}}">Profile</a>
+  <div class="navbar">
+    <div class='left'>
+      <img class='logo' src="http://pngimg.com/upload/bucket_PNG7774.png" alt="Bucket List" />
+    </div>
+    <div class="right" ng-show='{{$storage.ItemsToPage.loggedIn}}'>
+      <a class='link' href="#welcome/ + {{$storage.ItemsToPage._id}}">Bucket</a>
+      <a class='link' href="#/" ng-click='logout()'>Logout</a>
+    </div>
+    <div class="right">
+      <a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a>
+    </div>
   </div>
   <div>
     <input class="searcher" type="text" ng-model='search.letters' placeholder="Find Friends" ng-keyup='findFriends()'>
@@ -10,15 +19,15 @@
   </div>
 </div>
 <div class="container">
-  <h1>Check Out Your Bucket {{$storage.ItemsToPage.user.userFirst}}</h1>
-  <div ng-repeat='pending in  $storage.ItemsToPage.user.pendingFriends'>
-    <div ng-click=addToFriends(pending)>
-      {{pending}}
+  <h1>Check Out Your Bucket {{$storage.ItemsToPage.userFirst}}</h1>
+  <div ng-repeat='pending in  $storage.ItemsToPage.pendingFriends'>
+    <div class='friends'>
+      <button ng-click=addToFriends(pending)><i class="fa fa-check-circle-o"></i></button><button><i class="fa fa-times-circle-o"></i></button><span>{{pending.userFirst}} {{pending.userLast}}</span>
     </div>
   </div>
   <div>
-    <span><h3><strong>First Name: </strong>{{$storage.ItemsToPage.user.userFirst}} <strong>Last Name: </strong>{{$storage.ItemsToPage.user.userLast}}</h3></span>
-    <span><strong>Email: </strong>{{$storage.ItemsToPage.user.email}} strong</span>
+    <span><h3><strong>First Name: </strong>{{$storage.ItemsToPage.userFirst}} <strong>Last Name: </strong>{{$storage.ItemsToPage.userLast}}</h3></span>
+    <span><strong>Email: </strong>{{$storage.ItemsToPage.email}} strong</span>
   </div>
   <div>
     <button ng-click='toggleNewBucket()'>
@@ -46,7 +55,7 @@
       <input type="submit" name="Add to Bucket" ng-click='toggleNewBucket()'>
     </form>
   </div>
-  <div ng-repeat='item in $storage.ItemsToPage.user.lists'>
+  <div ng-repeat='item in $storage.ItemsToPage.bucket'>
     <div>
       <img src="{{item.image}}"/>
     </div>
