@@ -70,22 +70,21 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
   }
 
   $scope.findOne = function (friend) {
-    console.log($scope.$storage.ItemsToPage, 'before the func');
     ItemsToPage.findOne(friend).then(function (friend) {
       $scope.$storage.ItemsToPage.oneFriend = friend.friend;
       $scope.$storage.ItemsToPage.friendBucket = friend.foundItems;
-      console.log($scope.$storage.ItemsToPage, 'i beleive added object');
     })
   }
 
-  $scope.switch = true;
   $scope.addFriend = function () {
-    $scope.switch = false;
     $scope.$storage.ItemsToPage.friend = {
       _id: $scope.$storage.ItemsToPage.oneFriend._id,
       user: $scope.$storage.ItemsToPage._id
     }
-    ItemsToPage.addFriend($scope.$storage.ItemsToPage.friend);
+    ItemsToPage.addFriend($scope.$storage.ItemsToPage.friend).then(function (updatedUser) {
+      $scope.$storage.ItemsToPage.oneFriend = updatedUser.user.friend;
+      $scope.$storage.ItemsToPage.friendBucket = updatedUser.user.foundItems;
+    })
   }
 
   $scope.addLike = function (item) {
@@ -99,7 +98,6 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
       _id: friend
     }
     ItemsToPage.addToFriends(friend).then(function (updatedUser) {
-      console.log(updatedUser, 'object to change scope object');
       $scope.$storage.ItemsToPage = updatedUser.user;
       $scope.$storage.ItemsToPage.loggedIn = true;
     })
@@ -114,6 +112,14 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
       $scope.$storage.ItemsToPage = updatedUser.user;
       $scope.$storage.ItemsToPage.loggedIn = true;
     })
+  }
+
+  $scope.checkToHide = function (item) {
+    if(item._id === item.oneFriend._id || (item.oneFriend.pendingFriends.indexOf(item._id) != -1) || (item.friends.indexOf(item.oneFriend._id) != -1)){
+      return true
+    } else {
+      return false
+    }
   }
 
 }])

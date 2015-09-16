@@ -7,6 +7,7 @@ app.service("ItemsToPage", ['$http', function ($http) {
   }
   this.login = function (user) {
     return $http.post('http://localhost:3000/api/login', user).then(function (response) {
+      console.log(response.data, 'hopefully');
       return response.data
     })
   }
@@ -36,8 +37,9 @@ app.service("ItemsToPage", ['$http', function ($http) {
   }
 
   this.addFriend = function (currentUser) {
-    $http.post('http://localhost:3000/api/addFriend', currentUser).then(function (response) {
-      console.log(response, 'please be updated user');
+    return $http.post('http://localhost:3000/api/addFriend', currentUser).then(function (updatedFriend) {
+      console.log(updatedFriend.data, 'friend updated');
+      return updatedFriend.data
     })
   }
 
@@ -53,9 +55,16 @@ app.service("ItemsToPage", ['$http', function ($http) {
   }
 
   this.removePending = function (friend) {
-    $http.post('http://localhost:3000/api/removePending', friend).then(function (updatedUser) {
+    return $http.post('http://localhost:3000/api/removePending', friend).then(function (updatedUser) {
       console.log(updatedUser.data, 'user updated');
       return updatedUser.data
     })
   }
+
+  // this.foundPending = function (pendingFriends) {
+  //   return $http.get('http://localhost:3000/api/findPending', pendingFriends).then(function (foundPending) {
+  //     console.log(foundPending, 'pending friends found');
+  //     return foundPending
+  //   })
+  // }
 }])
