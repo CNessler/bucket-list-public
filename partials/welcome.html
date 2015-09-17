@@ -25,6 +25,12 @@
       <button ng-click=addToFriends(pending._id)><i class="fa fa-check-circle-o"></i></button><button ng-click='removePending(pending)'><i class="fa fa-times-circle-o"></i></button><span>{{pending.userFirst}} {{pending.userLast}}</span>
     </div>
   </div>
+  <div ng-repeat='friend in $storage.ItemsToPage.foundFriends'>
+    <p>
+      {{friend.userFirst}}
+    </p>
+
+  </div>
   <div>
     <span><h3><strong>First Name: </strong>{{$storage.ItemsToPage.userFirst}} <strong>Last Name: </strong>{{$storage.ItemsToPage.userLast}}</h3></span>
     <span><strong>Email: </strong>{{$storage.ItemsToPage.email}} strong</span>

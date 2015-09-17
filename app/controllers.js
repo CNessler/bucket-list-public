@@ -31,6 +31,7 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
       } else {
         $scope.$storage.ItemsToPage = data.user.foundUser;
         $scope.$storage.ItemsToPage.pendingFriends = data.user.pendingFriendsInfo;
+        $scope.$storage.ItemsToPage.foundFriends = data.user.foundFriends;
         $scope.$storage.ItemsToPage.bucket = data.user.foundItems;
         $scope.$storage.ItemsToPage.loggedIn = data.loggedIn;
         $cookies.put('name', data.user.foundUser._id)

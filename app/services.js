@@ -6,7 +6,6 @@ app.service("ItemsToPage", ['$http', function ($http) {
     })
   }
   this.login = function (user) {
-    console.log(user, 'going to db');
     return $http.post('http://localhost:3000/api/login', user).then(function (response) {
       return response.data
     })
@@ -38,7 +37,6 @@ app.service("ItemsToPage", ['$http', function ($http) {
 
   this.addFriend = function (currentUser) {
     return $http.post('http://localhost:3000/api/addFriend', currentUser).then(function (updatedFriend) {
-      console.log(updatedFriend.data, 'friend updated');
       return updatedFriend.data
     })
   }
@@ -49,14 +47,13 @@ app.service("ItemsToPage", ['$http', function ($http) {
 
   this.addToFriends = function (friend) {
     return $http.post('http://localhost:3000/api/addToFriends', friend).then(function (updatedUser) {
-      console.log(updatedUser.data, 'user update');
+      console.log(updatedUser, 'User updated');
       return updatedUser.data
     })
   }
 
   this.removePending = function (friend) {
     return $http.post('http://localhost:3000/api/removePending', friend).then(function (updatedUser) {
-      console.log(updatedUser.data, 'user updated');
       return updatedUser.data
     })
   }
