@@ -6,8 +6,8 @@ app.service("ItemsToPage", ['$http', function ($http) {
     })
   }
   this.login = function (user) {
+    console.log(user, 'going to db');
     return $http.post('http://localhost:3000/api/login', user).then(function (response) {
-      console.log(response.data, 'hopefully');
       return response.data
     })
   }
@@ -60,11 +60,4 @@ app.service("ItemsToPage", ['$http', function ($http) {
       return updatedUser.data
     })
   }
-
-  // this.foundPending = function (pendingFriends) {
-  //   return $http.get('http://localhost:3000/api/findPending', pendingFriends).then(function (foundPending) {
-  //     console.log(foundPending, 'pending friends found');
-  //     return foundPending
-  //   })
-  // }
 }])

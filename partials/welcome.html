@@ -19,11 +19,10 @@
   </div>
 </div>
 <div class="container">
-  {{$storage.ItemsToPage.pendingFriends}}
   <h1>Check Out Your Bucket {{$storage.ItemsToPage.userFirst}}</h1>
   <div ng-repeat='pending in $storage.ItemsToPage.pendingFriends'>
     <div class='friends'>
-      <button ng-click=addToFriends(pending)><i class="fa fa-check-circle-o"></i></button><button ng-click='removePending(pending)'><i class="fa fa-times-circle-o"></i></button><span>{{pending}}</span>
+      <button ng-click=addToFriends(pending._id)><i class="fa fa-check-circle-o"></i></button><button ng-click='removePending(pending)'><i class="fa fa-times-circle-o"></i></button><span>{{pending.userFirst}} {{pending.userLast}}</span>
     </div>
   </div>
   <div>
