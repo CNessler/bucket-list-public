@@ -1,4 +1,9 @@
-app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', '$localStorage', function ($scope, $location, ItemsToPage, $cookies, $localStorage) {
+app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', '$localStorage', 'BucketListService', function ($scope, $location, ItemsToPage, $cookies, $localStorage, BucketListService) {
+  $scope.users;
+  BucketListService.all().then(function (allUsers) {
+    $scope.users = allUsers
+  })
+  console.log($scope.users, "USERS");
 
   $scope.$storage = $localStorage
   $scope.signup = function () {
@@ -6,9 +11,7 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
     $scope.newUser.friends = [];
     $scope.newUser.pendingFriends = [];
     ItemsToPage.signup($scope.newUser).then(function (data) {
-      console.log(data, 'data returned to client from db');
       if(data.errors){
-        console.log(data.errors, 'errors here');
         $scope.$storage.ItemsToPage = data.errors
         $scope.newUser = {};
         $location.path('/signup');
@@ -23,7 +26,6 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
 
   $scope.login = function () {
     ItemsToPage.login($scope.user).then(function (data) {
-      console.log(data, 'coming to client');
       if(data.errors){
         $scope.$storage.ItemsToPage = data.errors
         $scope.user = {};
@@ -49,6 +51,7 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
   $scope.addDream = function () {
     $scope.item.user = $scope.$storage.ItemsToPage._id;
     $scope.item.likes = 0;
+    $scope.item.completed = false;
     ItemsToPage.insert($scope.item)
     $scope.$storage.ItemsToPage.bucket.push($scope.item)
     $scope.item = {};
@@ -66,16 +69,25 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
   }
 
   $scope.findFriends = function () {
-    ItemsToPage.findFriends($scope.search).then(function (foundFriends) {
-      $scope.$storage.ItemsToPage.foundFriends = foundFriends;
-    })
+    console.log($scope.search.letters.length, 'length of search');
+    if($scope.search.letters != "" || ($scope.search.letters.length != 0)){
+      ItemsToPage.findFriends($scope.search).then(function (foundFriends) {
+        console.log(foundFriends.foundFriends, "found friends");
+        $scope.$storage.ItemsToPage.foundFriends = foundFriends;
+      })
+    }
   }
 
   $scope.findOne = function (friend) {
-    ItemsToPage.findOne(friend).then(function (friend) {
-      $scope.$storage.ItemsToPage.oneFriend = friend.friend;
-      $scope.$storage.ItemsToPage.friendBucket = friend.foundItems;
-    })
+    if(friend._id != $scope.$storage.ItemsToPage._id){
+      ItemsToPage.findOne(friend).then(function (friend) {
+        $scope.$storage.ItemsToPage.oneFriend = friend.friend;
+        $scope.$storage.ItemsToPage.friendBucket = friend.foundItems;
+      })
+      $location.path('/friend/' + friend._id)
+    } else {
+      $location.path('/profile/' + $scope.$storage.ItemsToPage._id)
+    }
   }
 
   $scope.addFriend = function () {
@@ -95,12 +107,18 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
   }
 
   $scope.addToFriends = function (friend) {
+    console.log('in func');
     friend = {
       user: $scope.$storage.ItemsToPage._id,
       _id: friend
     }
     ItemsToPage.addToFriends(friend).then(function (updatedUser) {
+      console.log(updatedUser, "for view");
       $scope.$storage.ItemsToPage = updatedUser.user;
+      $scope.$storage.ItemsToPage.foundFriends = updatedUser.foundFriends;
+      console.log(updatedUser.foundItems, 'ITEMS TO SHOW');
+      $scope.$storage.ItemsToPage.bucket = updatedUser.foundItems;
+      $scope.$storage.ItemsToPage.pendingFriends = updatedUser.pendingFriendsInfo;
       $scope.$storage.ItemsToPage.loggedIn = true;
     })
   }

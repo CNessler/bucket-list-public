@@ -20,7 +20,9 @@ app.service("ItemsToPage", ['$http', function ($http) {
   }
 
   this.findFriends = function (search) {
+    console.log(search, 'sending to db');
     return $http.post('http://localhost:3000/api/search', search).then(function (results) {
+      console.log(results, 'results from db');
       return results.data
     })
   }
@@ -46,9 +48,10 @@ app.service("ItemsToPage", ['$http', function ($http) {
   }
 
   this.addToFriends = function (friend) {
+    console.log(friend, "going to db");
     return $http.post('http://localhost:3000/api/addToFriends', friend).then(function (updatedUser) {
       console.log(updatedUser, 'User updated');
-      return updatedUser.data
+      return updatedUser.data.user
     })
   }
 
