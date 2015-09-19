@@ -43,7 +43,6 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
   }
 
   $scope.newBucket = true;
-
   $scope.toggleNewBucket = function () {
     $scope.newBucket = $scope.newBucket === false ? true: false;
   }
@@ -52,8 +51,16 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
     $scope.item.user = $scope.$storage.ItemsToPage._id;
     $scope.item.likes = 0;
     $scope.item.completed = false;
-    ItemsToPage.insert($scope.item)
-    $scope.$storage.ItemsToPage.bucket.push($scope.item)
+    console.log($scope.item, 'should be going to service');
+    ItemsToPage.insert($scope.item).then(function (updatedUser) {
+      console.log(updatedUser, "user updated from service");
+      $scope.$storage.ItemsToPage = updatedUser.user;
+      $scope.$storage.ItemsToPage.foundFriends = updatedUser.foundFriends;
+      $scope.$storage.ItemsToPage.bucket = updatedUser.foundItems;
+      $scope.$storage.ItemsToPage.pendingFriends = updatedUser.pendingFriendsInfo;
+      $scope.$storage.ItemsToPage.loggedIn = true;
+    })
+    // $scope.$storage.ItemsToPage.bucket.push($scope.item)
     $scope.item = {};
   }
 
@@ -113,10 +120,8 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
       _id: friend
     }
     ItemsToPage.addToFriends(friend).then(function (updatedUser) {
-      console.log(updatedUser, "for view");
       $scope.$storage.ItemsToPage = updatedUser.user;
       $scope.$storage.ItemsToPage.foundFriends = updatedUser.foundFriends;
-      console.log(updatedUser.foundItems, 'ITEMS TO SHOW');
       $scope.$storage.ItemsToPage.bucket = updatedUser.foundItems;
       $scope.$storage.ItemsToPage.pendingFriends = updatedUser.pendingFriendsInfo;
       $scope.$storage.ItemsToPage.loggedIn = true;
@@ -140,6 +145,17 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
     } else {
       return false
     }
+  }
+
+  $scope.completed = function (item) {
+    item.completed = true;
+    ItemsToPage.completed(item).then(function (updatedUser) {
+      $scope.$storage.ItemsToPage = updatedUser.user;
+      $scope.$storage.ItemsToPage.foundFriends = updatedUser.foundFriends;
+      $scope.$storage.ItemsToPage.bucket = updatedUser.foundItems;
+      $scope.$storage.ItemsToPage.pendingFriends = updatedUser.pendingFriendsInfo;
+      $scope.$storage.ItemsToPage.loggedIn = true;
+    })
   }
 
 }])

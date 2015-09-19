@@ -12,7 +12,10 @@ app.service("ItemsToPage", ['$http', function ($http) {
   }
 
   this.insert = function (post) {
-    return $http.post('http://localhost:3000/api/insert', post)
+    return $http.post('http://localhost:3000/api/insert', post).then(function (updatedUser) {
+      console.log(updatedUser, 'updated user to controller');
+      return updatedUser.data.user
+    })
   }
 
   this.updateProfile = function (profile) {
@@ -57,6 +60,13 @@ app.service("ItemsToPage", ['$http', function ($http) {
 
   this.removePending = function (friend) {
     return $http.post('http://localhost:3000/api/removePending', friend).then(function (updatedUser) {
+      return updatedUser.data
+    })
+  }
+
+  this.completed = function (item) {
+    return $http.post('http://localhost:3000/api/completed', item).then(function (updatedUser) {
+      console.log(updatedUser, 'USER UPDATED');
       return updatedUser.data
     })
   }

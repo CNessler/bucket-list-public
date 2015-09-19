@@ -8,13 +8,13 @@
       <a class='link' href="#/" ng-click='logout()'>Logout</a>
     </div>
     <div class="right">
-      <ahref="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a>
+      <a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a>
     </div>
     <input class="searcher" type="text" ng-model='person' placeholder="Find Friends">
   </div>
-  <ul class='search' ng-show='person.length != 0' ng-repeat='friend in users | filter:{userFirst: person}'>
-    <li ng-click='findOne(friend)'>{{friend.userFirst}}</li>
-  </ul>
+  <div class='search' ng-show='person.length != 0' ng-repeat='friend in users | filter:{userFirst: person}'>
+    <div id='searchResults' ng-click='findOne(friend)' tabindex=1++>{{friend.userFirst}}</div>
+  </div>
 </div>
 <div class="container">
   <h1>Check Out Your Bucket {{$storage.ItemsToPage.userFirst}}</h1>
@@ -64,6 +64,7 @@
       <img src="{{item.image}}"/>
     </div>
     <div>
+      {{item}} THIS IS THE TIEM
       <p>
         <strong>Title: </strong> {{item.title}}
       </p>
@@ -74,14 +75,15 @@
       </p>
     </div>
     <div>
+      <i class="fa fa-thumbs-o-up fa-2x"></i>{{item.likes}}
+    </div>
+    <div>
       <p>
         <strong>Description: </strong> {{item.description}}
       </p>
     </div>
     <div>
-      <p>
-        <strong>Complete: </strong> {{item.description}}
-      </p>
+        <i class="fa fa-check fa-3x" ng-click='completed(item)'></i>
     </div>
   </div>
 </div>
