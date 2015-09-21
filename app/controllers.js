@@ -170,11 +170,14 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
       $scope.$storage.ItemsToPage.loggedIn = true;
     })
   }
-  $scope.seeResults = function () {
-    if($scope.person.$dirty || $scope.person.length != 0 || $scope.person != ""){
-      return true
-    } else {
+
+  $scope.seeResults = function (person) {
+      console.log(person != undefined, 'person');
+    if(person === undefined || person.length === 0 || person === ""){
       return false
+    } else {
+      console.log('false, should be false');
+      return true
     }
   }
 
