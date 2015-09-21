@@ -12,7 +12,7 @@
     </div>
     <input class="searcher" type="text" ng-model='person' placeholder="Find Friends">
   </div>
-  <div class='search' ng-show='person.length != 0' ng-repeat='friend in users | filter:{userFirst: person}'>
+  <div class='search' ng-show='seeResults()' ng-repeat='friend in users | filter:{userFirst: person}'>
     <div id='searchResults' ng-click='findOne(friend)' tabindex=1++>{{friend.userFirst}}</div>
   </div>
 </div>

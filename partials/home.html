@@ -1,15 +1,13 @@
-<div class="container">
-  <div class="navbar">
-    <div class="left">
-      <img class='logo' src="http://pngimg.com/upload/bucket_PNG7774.png" alt="Bucket List" />
+<div class="container home">
+    <div class="quote">
+      <h1 class='quote_title'>Not knowing when the dawn will come I open every door</h1>
+      <h3 class="quote_author">-Emily Dickenson</h3>
     </div>
-    <h1 class='title'>Because a Dream is a Dream</h1>
-    <div class="right" ng-hide='{{$storage.ItemsToPage.loggedIn}}'>
-      <a class='link' href="#signup">Sign Up</a>
-      <a href="#login">Login</a>
+    <div class="btn" ng-hide='{{$storage.ItemsToPage.loggedIn}}'>
+      <a class='btn_signup' href="#signup">Sign Up</a>
+      <a class='btn_login' href="#login">Login</a>
     </div>
     <div class="right" ng-show='{{$storage.ItemsToPage.loggedIn}}'>
       <a class='link' href="#profile/ + {{$storage.ItemsToPage.user._id}}">Profile</a>
     </div>
-  </div>
 </div>

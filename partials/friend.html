@@ -11,18 +11,15 @@
       <a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a>
     </div>
   </div>
-  <div ng-hide='checkToHide($storage.ItemsToPage)'>
-    <p>I am the User</p>
   </div>
   {{$storage.ItemsToPage.oneFriend.pendingFriends.indexOf($storage.ItemsToPage._id) === -1}}
-  {{$storage.ItemsToPage._id === $storage.ItemsToPage.oneFriend._id}}
   <h1>{{$storage.ItemsToPage.oneFriend.userFirst}} {{$storage.ItemsToPage.oneFriend.userLast}}</h1>
   <div ng-hide='checkToHide($storage.ItemsToPage)'>
     <button ng-click='addFriend($storage.ItemsToPage.oneFriend)'><i class="fa fa-check-circle-o fa-2x"></i><span>Friend</span></button>
   </div>
   <div class="friend list" ng-show='$storage.ItemsToPage.oneFriend.private === false'>
     <div class="list" ng-repeat='item in $storage.ItemsToPage.friendBucket'>
-      <i class="fa fa-thumbs-o-up fa-2x" ng-click='addLike(item)'></i>{{item.likes}}
+      <i ng-hide='checkLikesToHide($storage.ItemsToPage, item)' class="fa fa-thumbs-o-up fa-2x" ng-click='addLike(item)'></i>{{item.likes}}
       <p>
         {{item.title}}
       </p>

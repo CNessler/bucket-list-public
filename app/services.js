@@ -47,7 +47,10 @@ app.service("ItemsToPage", ['$http', function ($http) {
   }
 
   this.addLike =  function (item) {
-    $http.post('http://localhost:3000/api/addLike', item);
+    $http.post('http://localhost:3000/api/addLike', item).then(function (updatedUser) {
+      console.log(updatedUser, 'going to client');
+      return updatedUser.data
+    })
   }
 
   this.addToFriends = function (friend) {

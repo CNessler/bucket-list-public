@@ -1,3 +1,64 @@
+body {
+  background-image: url(http://orig01.deviantart.net/947c/f/2013/153/2/2/macro_galaxy_by_zy0rg-d67ifmz.png);
+  background-repeat: no-repeat;
+}
+
+.quote {
+  text-align: center;
+  padding-top: 5%;
+}
+
+.quote_author {
+  padding-bottom: 20%;
+}
+
+.btn {
+  text-align: center;
+  padding: 40px;
+  width: 100%;
+}
+
+.btn_signup, .btn_login {
+  background-color: white;
+  text-decoration: none;
+  /*padding: 20px;*/
+  padding-right: 45px;
+  padding-left: 45px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 3px;
+}
+
+.btn_signup {
+  margin-right: 10%;
+}
+
+.form_signup {
+  background-color: grey;
+  align-content: center;
+  /*opacity: 0.3;*/
+}
+
+form {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.space{
+  padding-right: 15px
+}
+.check{
+  height: 25px;
+  width:25px;
+}
+
+.button{
+  margin-top: 42px;
+}
+/*.right {
+  margin-right: 20px;
+}*/
+
 img {
   height: 100px;
   width: 150px;
@@ -12,10 +73,10 @@ img {
   display: inline-block;
 }
 
-.title {
+/*.title {
   padding: 40px;
   vertical-align: top;
-}
+}*/
 
 .right {
   float: right;

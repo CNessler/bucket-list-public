@@ -10,6 +10,8 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
     $scope.newUser.bucket = [];
     $scope.newUser.friends = [];
     $scope.newUser.pendingFriends = [];
+    // $scope.newUser.photo = uploadFile()
+    console.log($scope.newUser, 'NEW USER WITH PHOTO');
     ItemsToPage.signup($scope.newUser).then(function (data) {
       if(data.errors){
         $scope.$storage.ItemsToPage = data.errors
@@ -50,6 +52,7 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
   $scope.addDream = function () {
     $scope.item.user = $scope.$storage.ItemsToPage._id;
     $scope.item.likes = 0;
+    $scope.item.likedBy = [];
     $scope.item.completed = false;
     console.log($scope.item, 'should be going to service');
     ItemsToPage.insert($scope.item).then(function (updatedUser) {
@@ -110,7 +113,14 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
 
   $scope.addLike = function (item) {
     item.likes += 1;
-    ItemsToPage.addLike(item);
+    item.beingLikedId = $scope.$storage.ItemsToPage._id;
+    ItemsToPage.addLike(item).then(function (updatedUser) {
+      $scope.$storage.ItemsToPage = updatedUser.user;
+      $scope.$storage.ItemsToPage.foundFriends = updatedUser.foundFriends;
+      $scope.$storage.ItemsToPage.bucket = updatedUser.foundItems;
+      $scope.$storage.ItemsToPage.pendingFriends = updatedUser.pendingFriendsInfo;
+      $scope.$storage.ItemsToPage.loggedIn = true;
+    })
   }
 
   $scope.addToFriends = function (friend) {
@@ -138,6 +148,9 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
       $scope.$storage.ItemsToPage.loggedIn = true;
     })
   }
+  $scope.checkLikesToHide = function (item) {
+    return item.oneFriend.likedBy.indexOf(item._id) ? true :false;
+  }
 
   $scope.checkToHide = function (item) {
     if(item._id === item.oneFriend._id || (item.oneFriend.pendingFriends.indexOf(item._id) != -1) || (item.friends.indexOf(item.oneFriend._id) != -1)){
@@ -156,6 +169,13 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
       $scope.$storage.ItemsToPage.pendingFriends = updatedUser.pendingFriendsInfo;
       $scope.$storage.ItemsToPage.loggedIn = true;
     })
+  }
+  $scope.seeResults = function () {
+    if($scope.person.$dirty || $scope.person.length != 0 || $scope.person != ""){
+      return true
+    } else {
+      return false
+    }
   }
 
 }])
