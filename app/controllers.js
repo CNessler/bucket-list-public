@@ -48,6 +48,14 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
   $scope.toggleNewBucket = function () {
     $scope.newBucket = $scope.newBucket === false ? true: false;
   }
+  $scope.bucketList = true;
+  $scope.toggleList = function () {
+    $scope.bucketList = $scope.bucketList === false ? true: false;
+  }
+  $scope.itemDescription = true;
+  $scope.toggleDescription = function () {
+    $scope.itemDescription = $scope.itemDescription === false ? true: false;
+  }
 
   $scope.addDream = function () {
     $scope.item.user = $scope.$storage.ItemsToPage._id;

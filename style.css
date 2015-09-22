@@ -60,7 +60,7 @@ form {
 .navbar-brand img {
   height: 80px;
   width: 50px;
-  margin-top: -28px;
+  margin-top: -29px;
 }
 
 .dropdown {
@@ -83,5 +83,51 @@ form {
   cursor: pointer;
 }
 i:hover {
+  cursor: pointer;
+}
+
+.item {
+  width: 80%;
+  height: auto;
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.bucket-picture {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+}
+
+.left {
+  float: left;
+  width: 30%;
+  display: inline-block;
+}
+.right{
+  display: inline-block;
+  width: 70%;
+}
+.checkmark, .likes {
+  float: right;
+}
+
+.item .right h3 {
+  font-size: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 0px;
+  display: inline-block;
+}
+.item .right p {
+  margin: 0px;
+}
+.description {
+  width: 100%;
+  padding-left: 5px;
+}
+
+.descriptionDiv:hover {
   cursor: pointer;
 }
