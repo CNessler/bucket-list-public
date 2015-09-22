@@ -1,15 +1,35 @@
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+‘      <div class="nav navbar-nav navbar-right">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand logo" href="#/">
+          <img alt="Brand" src="http://www.amdesigns.com/pictures/1638_detail.png">
+        </a>
+      </div>
+      </div>
+      <div class="collapse navbar-collapse" id="mainNavbarInfo" ng-show='{{$storage.ItemsToPage.loggedIn}}'>
+        <ul class="nav navbar-nav">
+          <!-- <li class="active"><input class="searcher" type="text" ng-model='person' placeholder="Find Friends"></li> -->
+          <li class="dropdown"><a href="#welcome/ + {{$storage.ItemsToPage._id}}">Bucket<span class="sr-only">(current)</span></a></li>
+          <li class="dropdown"><a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a></li>
+          <li class=""><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>{{$storage.ItemsToPage.pendingFriends.length}} </strong><i class="fa fa-user fa-2x"></i>
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-repeat='pending in $storage.ItemsToPage.pendingFriends'>
+              <li><i class="fa fa-check-circle-o" ng-click=addToFriends(pending._id)></i><i class="fa fa-times-circle-o" ng-click='removePending(pending)'></i>{{pending.userFirst}} {{pending.userLast}}</li>
+            </ul></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown"><a class='logout' href="#/" ng-click='logout()'>Logout</a></li>
+      </div>
+    </div>
+  </nav>
 <div class="container-fluid">
-  <div class="navbar">
-    <div class='left'>
-      <img class='logo' src="http://pngimg.com/upload/bucket_PNG7774.png" alt="Bucket List" />
-    </div>
-    <div class="right" ng-show='{{$storage.ItemsToPage.loggedIn}}'>
-      <a class='link' href="#welcome/ + {{$storage.ItemsToPage._id}}">Bucket</a>
-      <a class='link' href="#/" ng-click='logout()'>Logout</a>
-    </div>
-    <div class="right">
-      <a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a>
-    </div>
     <input class="searcher" type="text" ng-model='person' placeholder="Find Friends">
   </div>
   <div class='search' ng-show='seeResults(person)' ng-repeat='friend in users | filter:{userFirst: person}'>
@@ -18,11 +38,6 @@
 </div>
 <div class="container">
   <h1>Check Out Your Bucket {{$storage.ItemsToPage.userFirst}}</h1>
-  <div ng-repeat='pending in $storage.ItemsToPage.pendingFriends'>
-    <div class='friends'>
-      <button ng-click=addToFriends(pending._id)><i class="fa fa-check-circle-o"></i></button><button ng-click='removePending(pending)'><i class="fa fa-times-circle-o"></i></button><span>{{pending.userFirst}} {{pending.userLast}}</span>
-    </div>
-  </div>
   <div ng-repeat='friend in $storage.ItemsToPage.foundFriends'>
     <p>
       {{friend.userFirst}}
@@ -60,11 +75,15 @@
     </form>
   </div>
   <div ng-repeat='item in $storage.ItemsToPage.bucket'>
+    <div class="item">
+      <div class="">
+
+      </div>
+    </div>
     <div>
       <img src="{{item.image}}"/>
     </div>
     <div>
-      {{item}} THIS IS THE TIEM
       <p>
         <strong>Title: </strong> {{item.title}}
       </p>

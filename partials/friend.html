@@ -1,18 +1,21 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand logo" href="#/">
+        <img alt="Brand" src="http://pngimg.com/upload/bucket_PNG7774.png">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-show='{{$storage.ItemsToPage.loggedIn}}'>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#welcome/ + {{$storage.ItemsToPage._id}}">Bucket<span class="sr-only">(current)</span></a></li>
+        <li><a href="#/" ng-click='logout()'>Logout</a></li>
+        <li class="dropdown"><a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
-  <div class="navbar">
-    <div class='left'>
-      <img class='logo' src="http://pngimg.com/upload/bucket_PNG7774.png" alt="Bucket List" />
-    </div>
-    <div class="right" ng-show='{{$storage.ItemsToPage.loggedIn}}'>
-      <a class='link' href="#welcome/ + {{$storage.ItemsToPage._id}}">Bucket</a>
-      <a class='link' href="#/" ng-click='logout()'>Logout</a>
-    </div>
-    <div class="right">
-      <a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a>
-    </div>
-  </div>
-  </div>
-  {{$storage.ItemsToPage.oneFriend.pendingFriends.indexOf($storage.ItemsToPage._id) === -1}}
   <h1>{{$storage.ItemsToPage.oneFriend.userFirst}} {{$storage.ItemsToPage.oneFriend.userLast}}</h1>
   <div ng-hide='checkToHide($storage.ItemsToPage)'>
     <button ng-click='addFriend($storage.ItemsToPage.oneFriend)'><i class="fa fa-check-circle-o fa-2x"></i><span>Friend</span></button>

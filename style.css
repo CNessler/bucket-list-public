@@ -1,5 +1,6 @@
 body {
-  background-image: url(http://orig01.deviantart.net/947c/f/2013/153/2/2/macro_galaxy_by_zy0rg-d67ifmz.png);
+  background-image: url(http://fotonin.com/data_images/out/17/918191-white-clouds-background.jpg);
+  /*opacity: 0.3;*/
   background-repeat: no-repeat;
 }
 
@@ -55,35 +56,16 @@ form {
 .button{
   margin-top: 42px;
 }
-/*.right {
-  margin-right: 20px;
-}*/
 
-img {
-  height: 100px;
-  width: 150px;
-}
-
-.logo {
-  height: 50px;
+.navbar-brand img {
+  height: 80px;
   width: 50px;
+  margin-top: -28px;
 }
 
-.navbar, .left, .right, .title {
-  display: inline-block;
-}
-
-/*.title {
-  padding: 40px;
-  vertical-align: top;
-}*/
-
-.right {
-  float: right;
-}
-
-.left {
-  float: left;
+.dropdown {
+  padding-top: 6px;
+  font-size: 18px;
 }
 
 .search {
