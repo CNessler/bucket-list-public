@@ -54,23 +54,35 @@
   </div>
   <div ng-hide='newBucket'>
     <form class="form-inline" ng-submit="addDream(item)">
-      <div class="form-group">
-        <label for="location">Location</label>
-          <input type="text" id="location" class="form-control" ng-model="item.location" required>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label for="title">Title</label>
+              <input class="form-control" id="title" type="text" ng-model="item.title" required>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label for="location">Location</label>
+              <input type="text" id="location" class="form-control" ng-model="item.location" required>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+              <input class="form-control" id="description" type="textarea" ng-model="item.description" required>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="image">Image URL</label>
+              <input class="form-control" id="image" type="url" ng-model="item.image" placeholder="Optional">
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <input type="submit" class='btn btn-default' name="Add to Bucket" ng-click='toggleNewBucket()'>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="title">Title</label>
-          <input class="form-control" id="title" type="text" ng-model="item.title" required>
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-          <input class="form-control" id="description" type="textarea" ng-model="item.description" required>
-      </div>
-      <div class="form-group">
-        <label for="image">Image URL</label>
-          <input class="form-control" id="image" type="url" ng-model="item.image" placeholder="Optional">
-      </div>
-      <input type="submit" name="Add to Bucket" ng-click='toggleNewBucket()'>
     </form>
   </div>
   <button ng-click="toggleList()">Bucket List</button>
@@ -82,8 +94,8 @@
         </div>
         <div class="right">
           <span><h3>{{item.title}}</h3><i class="fa fa-check checkmark" ng-click='completed(item)'></span></i>
-          <p><span><strong class="item_location">Location: </strong>{{item.location}}</span></p>
-          <div class="descriptionDiv" ng-click="toggleDescription()"><strong>Description</strong><i class="fa fa-sort-desc"></i><span class="likes">{{item.likes}}<i class="fa fa-thumbs-o-up"></i></span></div>
+          <p class="item_location"><span><strong>Location: </strong>{{item.location}}</span></p>
+          <span><div class="descriptionDiv" ng-click="toggleDescription()"><strong>Description</strong><i class="fa fa-sort-desc"></div></i><div class="likes">{{item.likes}}<i class="fa fa-thumbs-o-up"></i></div></span>
         </div>
         <div class="description" ng-hide="itemDescription">{{item.description}}</div>
       </div>

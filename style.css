@@ -87,7 +87,7 @@ i:hover {
 }
 
 .item {
-  width: 80%;
+  width: 100%;
   height: auto;
   background-color: white;
   margin: 0 auto;
@@ -98,6 +98,8 @@ i:hover {
   height: 100%;
   width: 100%;
   display: inline-block;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
 .left {
@@ -112,7 +114,9 @@ i:hover {
 .checkmark, .likes {
   float: right;
 }
-
+.item .right .item_location {
+  padding-bottom: 6%;
+}
 .item .right h3 {
   font-size: 20px;
   padding-top: 0px;
@@ -125,9 +129,18 @@ i:hover {
 }
 .description {
   width: 100%;
-  padding-left: 5px;
+  padding-left: 8px;
+  padding-top: 5px;
+}
+.descriptionDiv {
+  display: inline-block;
 }
 
 .descriptionDiv:hover {
   cursor: pointer;
+}
+
+form {
+  width: 100%;
+  margin: 0px
 }
