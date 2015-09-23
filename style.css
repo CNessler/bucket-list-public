@@ -4,6 +4,12 @@ body {
   background-repeat: no-repeat;
 }
 
+.container-fluid, .container {
+  background-color: rgba(255, 255, 255, 0.4);
+  /*opacity: 0.3;*/
+  z-index: 2;
+}
+
 .quote {
   text-align: center;
   padding-top: 5%;
@@ -56,9 +62,11 @@ form {
 .button{
   margin-top: 42px;
 }
-
+.navbar-header  {
+  height: 0px;
+}
 .navbar-brand img {
-  height: 80px;
+  height: 60px;
   width: 50px;
   margin-top: -29px;
 }
@@ -69,15 +77,18 @@ form {
 }
 
 .search {
-  width: 200px;
+  width: 150px;
   height: auto;
   padding: 5px;
   border: 1px solid grey;
 }
 .searcher {
-  width:200px;
+  width:150px;
+  border-radius: 2px;
 }
-
+.searcher_right{
+  float: right;
+}
 .search:hover {
   background-color: grey;
   cursor: pointer;
