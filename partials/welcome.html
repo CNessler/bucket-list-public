@@ -33,35 +33,22 @@
       <ul class="nav navbar-nav">
         <li class="dropdown"><a href="#welcome/ + {{$storage.ItemsToPage._id}}">Bucket<span class="sr-only">(current)</span></a></li>
         <li class="dropdown"><a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a></li>
-        <!-- <li class=""><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>{{$storage.ItemsToPage.pendingFriends.length}} </strong><i class="fa fa-user fa-2x"></i>
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-repeat='pending in $storage.ItemsToPage.pendingFriends'>
-            <li><i class="fa fa-check-circle-o" ng-click=addToFriends(pending._id)></i><i class="fa fa-times-circle-o" ng-click='removePending(pending)'></i>{{pending.userFirst}} {{pending.userLast}}</li>
-          </ul></li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown"><a class='logout' href="#/" ng-click='logout()'>Logout</a></li>
     </div>
   </div>
 </nav>
-<!-- <div class="container-fluid"> -->
-  <!-- <div class="searchbar">
-    <input class="searcher searcher_right" type="text" ng-model='person' placeholder="Find Friends">
-    <div class='search' ng-show='seeResults(person)' ng-repeat='friend in users | filter:{userFirst: person}'>
-      <div id='searchResults' ng-click='findOne(friend)' tabindex=1++>{{friend.userFirst}} {{friend.userLast}}</div>
-    </div>
-  </div> -->
-<!-- </div> -->
 <div class="container">
   <h3>{{$storage.ItemsToPage.userFirst}} {{$storage.ItemsToPage.userLast}}</h3>
   <!-- <div ng-repeat='friend in $storage.ItemsToPage.foundFriends'>
     <p>{{friend.userFirst}}</p>
   </div> -->
   <div>
-    <div ng-click='toggleNewBucket()'><i class="fa fa-plus"></i> Item</div>
+    <div class="add_item" ng-click='toggleNewBucket()'><i class="fa fa-plus"></i> Item</div>
   </div>
   <div ng-hide='newBucket'>
-    <form class="form-inline" ng-submit="addDream(item)">
+    <form class="form-inline welcome_form" ng-submit="addDream(item)">
       <div class="row">
         <div class="col-xs-6">
           <div class="form-group">
@@ -95,7 +82,7 @@
   </div>
   <!-- <button ng-click="toggleList()">Bucket List</button> -->
   <!-- <div ng-hide='bucketList'> -->
-    <div ng-repeat='item in $storage.ItemsToPage.bucket'>
+    <div class="item-container" ng-repeat='item in $storage.ItemsToPage.bucket'>
       <div class="item">
         <div class="left">
           <img class="bucket-picture" ng-src="{{item.image}}"/>
