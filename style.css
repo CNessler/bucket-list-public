@@ -68,30 +68,66 @@ form {
 .navbar-brand img {
   height: 60px;
   width: 50px;
-  margin-top: -29px;
+  margin-top: -20px;
 }
 
 .dropdown {
   padding-top: 6px;
   font-size: 18px;
 }
+.dropdown-toggle {
+  padding-top: 13px;
+  display: inline-block;
+}
 
 .search {
   width: 150px;
   height: auto;
-  padding: 5px;
-  border: 1px solid grey;
+  /*padding: 5px;*/
+  /*border: 1px solid grey;*/
+  /*z-index: -1;*/
+  position: absolute;
 }
 .searcher {
-  width:150px;
-  border-radius: 2px;
+  width:100%;
+  background: #fff;
+  border: 1px solid black;
+  border-top-color: #d9d9d9;
+  /*box-shadow: 0 2px 4px rgba(0,0,0,0.2);*/
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  cursor: default;
 }
+
 .searcher_right{
-  float: right;
+  /*float: right;*/
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  height: auto;
+  /*width: 25%;*/
+  /*position: absolute;*/
+  z-index: 1;
+  -webkit-text-fill-color: silver;
+  color: silver;
+  transition: all 0.218s;
+  /*opacity: 0;*/
+  text-align: left;
+  left: 0px;
+  /*background-color: transparent;*/
 }
-.search:hover {
+#searchResults:hover {
   background-color: grey;
   cursor: pointer;
+}
+
+#searchResults {
+  border: 1px solid grey;
+}
+.searchbar {
+  width: 150px;
+  display: inline-block;
+  padding-left: 8px;
+  /*float: right;*/
 }
 i:hover {
   cursor: pointer;
