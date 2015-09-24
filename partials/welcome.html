@@ -1,44 +1,46 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    <div class="nav navbar-nav navbar-right">
-      <div class="dropdown-button">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
-           <span class="sr-only">Toggle navigation</span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-        </button>
-      </div>
-      <a class="navbar-brand logo" href="#/">
-        <img alt="Brand" src="http://www.amdesigns.com/pictures/1638_detail.png">
-      </a>
-      <div class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        <strong>{{$storage.ItemsToPage.pendingFriends.length}} </strong><i class="fa fa-user fa-2x"></i>
-            <span class="caret"></span></div>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-repeat='pending in $storage.ItemsToPage.pendingFriends'>
-              <li><i class="fa fa-check-circle-o" ng-click=addToFriends(pending._id)></i><i class="fa fa-times-circle-o" ng-click='removePending(pending)'></i>{{pending.userFirst}} {{pending.userLast}}</li>
-            </ul></li>
-      <div class="searchbar">
-        <input class="searcher searcher_right" type="text" ng-model='person' placeholder="Find Friends">
-        <div class="search">
-          <div ng-show='seeResults(person)' ng-repeat='friend in users | filter:{userFirst: person}'>
-            <div id='searchResults' ng-click='findOne(friend)' tabindex=1++>{{friend.userFirst}} {{friend.userLast}}</div>
+<div class="navbar navbar-fixed-top">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      <div class="nav navbar-nav navbar-right">
+        <div class="dropdown-button">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+          </button>
+        </div>
+        <a class="navbar-brand logo" href="#/">
+          <img alt="Brand" src="http://www.amdesigns.com/pictures/1638_detail.png">
+        </a>
+        <div class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <strong>{{$storage.ItemsToPage.pendingFriends.length}} </strong><i class="fa fa-user fa-2x"></i>
+              <span class="caret"></span></div>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-repeat='pending in $storage.ItemsToPage.pendingFriends'>
+                <li><i class="fa fa-check-circle-o" ng-click=addToFriends(pending._id)></i><i class="fa fa-times-circle-o" ng-click='removePending(pending)'></i>{{pending.userFirst}} {{pending.userLast}}</li>
+              </ul></li>
+        <div class="searchbar">
+          <input class="searcher searcher_right" type="text" ng-model='person' placeholder="Find Friends">
+          <div class="search">
+            <div ng-show='seeResults(person)' ng-repeat='friend in users | filter:{userFirst: person}'>
+              <div id='searchResults' ng-click='findOne(friend)' tabindex=1++>{{friend.userFirst}} {{friend.userLast}}</div>
+            </div>
           </div>
         </div>
       </div>
+      </div>
+      <div class="collapse navbar-collapse" id="mainNavbarInfo" ng-show='{{$storage.ItemsToPage.loggedIn}}'>
+        <ul class="nav navbar-nav">
+          <li class="dropdown"><a href="#welcome/ + {{$storage.ItemsToPage._id}}">Bucket<span class="sr-only">(current)</span></a></li>
+          <li class="dropdown"><a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown"><a class='logout' href="#/" ng-click='logout()'>Logout</a></li>
+      </div>
     </div>
-    </div>
-    <div class="collapse navbar-collapse" id="mainNavbarInfo" ng-show='{{$storage.ItemsToPage.loggedIn}}'>
-      <ul class="nav navbar-nav">
-        <li class="dropdown"><a href="#welcome/ + {{$storage.ItemsToPage._id}}">Bucket<span class="sr-only">(current)</span></a></li>
-        <li class="dropdown"><a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown"><a class='logout' href="#/" ng-click='logout()'>Logout</a></li>
-    </div>
-  </div>
-</nav>
+  </nav>
+</div>
 <div class="container">
   <h3>{{$storage.ItemsToPage.userFirst}} {{$storage.ItemsToPage.userLast}}</h3>
   <!-- <div ng-repeat='friend in $storage.ItemsToPage.foundFriends'>
@@ -90,10 +92,10 @@
         <div class="right">
           <span><h3>{{item.title}}</h3><i class="fa fa-check checkmark" ng-click='completed(item)'></span></i>
           <p class="item_location"><span><strong>Location: </strong>{{item.location}}</span></p>
-          <span><div class="descriptionDiv" ng-click="toggleDescription()"><strong>Description</strong><i class="fa fa-sort-desc"></div></i><div class="likes">{{item.likes}}<i class="fa fa-thumbs-o-up"></i></div></span>
+          <div class="description-container"><div class="descriptionDiv" ng-click="toggleDescription()"><strong>Description</strong><i class="fa fa-sort-desc"></div></i><div class="likes">{{item.likes}}<i class="fa fa-thumbs-o-up"></i></div></div>
         </div>
         <div class="description" ng-hide="itemDescription">{{item.description}}</div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </div>
