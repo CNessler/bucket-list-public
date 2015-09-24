@@ -31,12 +31,14 @@
       </div>
       </div>
       <div class="collapse navbar-collapse" id="mainNavbarInfo" ng-show='{{$storage.ItemsToPage.loggedIn}}'>
-        <ul class="nav navbar-nav">
-          <li class="dropdown"><a href="#welcome/ + {{$storage.ItemsToPage._id}}">Bucket<span class="sr-only">(current)</span></a></li>
-          <li class="dropdown"><a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown"><a class='logout' href="#/" ng-click='logout()'>Logout</a></li>
+        <div class=" list-items">
+          <ul class="nav navbar-nav">
+            <li class="dropdown"><a href="#welcome/ + {{$storage.ItemsToPage._id}}">Bucket<span class="sr-only">(current)</span></a></li>
+            <li class="dropdown"><a href="#profile/ + {{$storage.ItemsToPage._id}}">Profile</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown"><a class='logout' href="#/" ng-click='logout()'>Logout</a></li>
+        </div>
       </div>
     </div>
   </nav>
@@ -50,40 +52,38 @@
     <div class="add_item" ng-click='toggleNewBucket()'><i class="fa fa-plus"></i> Item</div>
   </div>
   <div ng-hide='newBucket'>
-    <form class="form-inline welcome_form" ng-submit="addDream(item)">
+    <form class="welcome_form" data-target="#accordion" ng-submit="addDream(item)">
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-md-6">
           <div class="form-group">
             <label for="title">Title</label>
               <input class="form-control" id="title" type="text" ng-model="item.title" required>
           </div>
         </div>
-        <div class="col-xs-6">
+        <div class="col-md-6">
           <div class="form-group">
             <label for="location">Location</label>
               <input type="text" id="location" class="form-control" ng-model="item.location" required>
           </div>
         </div>
-        <div class="col-xs-12">
+        <div class="col-md-12">
           <div class="form-group">
             <label for="description">Description</label>
               <input class="form-control" id="description" type="textarea" ng-model="item.description" required>
           </div>
         </div>
-        <div class="col-xs-12">
+        <div class="col-md-12">
           <div class="form-group">
             <label for="image">Image URL</label>
               <input class="form-control" id="image" type="url" ng-model="item.image" placeholder="Optional">
           </div>
         </div>
-        <div class="col-xs-6">
+        <div class="col-md-3">
           <input type="submit" class='btn btn-default' name="Add to Bucket" ng-click='toggleNewBucket()'>
         </div>
       </div>
     </form>
   </div>
-  <!-- <button ng-click="toggleList()">Bucket List</button> -->
-  <!-- <div ng-hide='bucketList'> -->
     <div class="item-container" ng-repeat='item in $storage.ItemsToPage.bucket'>
       <div class="item">
         <div class="left">
