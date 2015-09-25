@@ -8,7 +8,9 @@ body {
   background-size: cover;
 }
 
-.container {padding-top: 100px;}
+body .container {
+  padding-top: 100px;
+}
 .container-fluid, .container {
   background-color: rgba(255, 255, 255, 0.4);
   z-index: 2;
@@ -49,6 +51,16 @@ body {
   align-content: center;
 }
 
+.profile-form {
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 150px;
+  padding-top: 50px;
+}
+
+.private-group {
+  float: left;
+}
 form {
   width: 40%;
   margin: 0 auto;
@@ -104,6 +116,7 @@ form {
 }
 
 .searcher_right{
+  padding-left: 3px;
   border: none;
   line-height: 2;
   border-radius: 3px;
@@ -151,7 +164,7 @@ i, .add_item:hover {
   position: relative;
   margin: 0 auto;
   border-radius: 5px;
-  box-shadow: 5px 5px 5px #888888;
+  box-shadow: 5px 5px 5px #666666;
 }
 
 @media (max-width: 2000px) {
@@ -170,7 +183,7 @@ i, .add_item:hover {
     position: relative;
     margin: 0 auto;
     border-radius: 5px;
-    box-shadow: 5px 5px 5px #888888;
+    box-shadow: 5px 5px 5px #666666;
   }
   .description-container {
     position: absolute;
@@ -207,7 +220,7 @@ i, .add_item:hover {
     position: relative;
     margin: 0 auto;
     border-radius: 5px;
-    box-shadow: 5px 5px 5px #888888;
+    box-shadow: 5px 5px 5px #666666;
   }
   .description-container {
     position: absolute;
@@ -244,7 +257,7 @@ i, .add_item:hover {
     position: relative;
     margin: 0 auto;
     border-radius: 5px;
-    box-shadow: 5px 5px 5px #888888;
+    box-shadow: 5px 5px 5px #666666;
   }
   .description-container {
     position: absolute;
@@ -261,7 +274,7 @@ i, .add_item:hover {
     width: 70%;
   }
   .list-items {
-    padding-left: 0px;
+    padding-left: 300px;
   }
 }
 
@@ -281,7 +294,7 @@ i, .add_item:hover {
     position: relative;
     margin: 0 auto;
     border-radius: 5px;
-    box-shadow: 5px 5px 5px #888888;
+    box-shadow: 5px 5px 5px #666666;
   }
   .description-container {
     position: absolute;
@@ -318,7 +331,7 @@ i, .add_item:hover {
     position: relative;
     margin: 0 auto;
     border-radius: 5px;
-    box-shadow: 5px 5px 5px #888888;
+    box-shadow: 5px 5px 5px #666666;
   }
   .description-container {
     position: absolute;
@@ -395,9 +408,13 @@ i, .add_item:hover {
   padding-left: 5px;
 }
 .description {
+  /*display: none;*/
   width: 100%;
   padding-left: 8px;
-  padding-top: 5px;
+  padding-top: 90px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 5px 5px 5px #666666;
 }
 .descriptionDiv {
   display: inline-block;

@@ -53,7 +53,7 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
     $scope.bucketList = $scope.bucketList === false ? true: false;
   }
   $scope.itemDescription = true;
-  $scope.toggleDescription = function () {
+  $scope.toggleDescription = function (item) {
     $scope.itemDescription = $scope.itemDescription === false ? true: false;
   }
 
