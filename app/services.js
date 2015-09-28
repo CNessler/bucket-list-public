@@ -73,4 +73,16 @@ app.service("ItemsToPage", ['$http', function ($http) {
       return updatedUser.data
     })
   }
+
+  this.state = function (letter) {
+    console.log(letter, 'lette going to server');
+    return $http.get('http://localhost:3000/api/state', {
+      params: { letter: letter}
+    }).then(function (response) {
+      //parse out by terms length
+      // if less than three it is a state and use the first for the state name
+      //else it is a city so use that for to find and prefill city
+      console.log(response, 'Please work');
+    })
+  }
 }])

@@ -16,6 +16,12 @@ function uploadFile() {
   xhr.send(fd);
 }
 
+
+// var stateFill = function () {
+//   var state = document.getElementById('state').value
+//   console.log(state, "STATE FOUND");
+//   return 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + state + '&types=geocode&language=english&key=AIzaSyCp4oKsPZ8i_ofzoxsSw6A7rBswgmyXrJU'
+// }
 // var descriptionDiv = document.getElementsByClassName('item')
 // console.log(descriptionDiv.length, 'length');
 // console.log(Object.keys(description), 'descriptionDiv');

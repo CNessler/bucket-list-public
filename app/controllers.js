@@ -189,4 +189,9 @@ app.controller("bucketList", ['$scope', '$location', 'ItemsToPage', '$cookies', 
     }
   }
 
+  $scope.stateFill = function () {
+    console.log($scope.newUser.state, 'state');
+    ItemsToPage.state($scope.newUser.state);
+  }
+
 }])
